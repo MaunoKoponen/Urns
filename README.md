@@ -1,3 +1,3 @@
 Urns
 
-This is for testing  Unity/Jenkins continuous interation.
+This is for testing  Unity/Jenkins continuous integration.
