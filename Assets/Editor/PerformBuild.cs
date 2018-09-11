@@ -5,7 +5,7 @@ class PerformBuild
     {
         string[] scenes = { "Assets/Scenes/SampleScene.unity" };
 
-        //just adding comment to trigger build ...
+        //just adding comment to trigger build ....
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
             scenes = scenes,
