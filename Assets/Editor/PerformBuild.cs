@@ -12,7 +12,8 @@ class PerformBuild
             target = BuildTarget.Android,
             options = BuildOptions.None
 		};
-        BuildPipeline.BuildPlayer(buildPlayerOptions);
+
+		BuildPipeline.BuildPlayer(buildPlayerOptions);
 		
     }
 }
