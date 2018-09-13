@@ -21,7 +21,7 @@ public class DataController : MonoBehaviour
 			throw new Exception();
 		}
 
-		Debug.Log("after www error check");
+		Debug.Log("after www error check diipa daapa");
 		var jsonString = fixJson(www.text);
 
 		Debug.Log(string.Format("json: {0} ", jsonString));
