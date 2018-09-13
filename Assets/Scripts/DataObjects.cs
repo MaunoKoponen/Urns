@@ -27,9 +27,8 @@ namespace DataObjects
 		public string phone;
 		public string website;
 		public Company company;
-		private User element;
 
-
+		/*
 		public User(int id, string name, string username, string email, Address address, string phone, string website, Company company)
 		{
 			this.id = id;
@@ -41,13 +40,10 @@ namespace DataObjects
 			this.website = website;
 			this.company = company;
 		}
-
-		public User(User element)
-		{
-			this.element = element;
-		}
+		*/
 	}
 
+	[Serializable]
 	public class Address
 	{
 		public string street;
@@ -56,16 +52,38 @@ namespace DataObjects
 		public string zipcode;
 		public Geo geo;
 	}
+
+	[Serializable]
 	public class Geo
 	{
 		public string lat;
 		public string lng;
 	}
+
+	[Serializable]
 	public class Company
 	{
 		public string name;
 		public string catchPhrace;
 		public string bs;
+		/*
+		public Company(string name, string catchPhrace, string bs)
+		{
+			this.name = name;
+			this.catchPhrace = catchPhrace;
+			this.bs = bs;
+		}
+		*/
 	}
+
+	[Serializable]
+	public class Todo
+	{
+		public int userId;
+		public int id;
+		public string title;
+		public bool completed;
+	}
+
 	#endregion
 }

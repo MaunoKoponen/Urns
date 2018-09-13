@@ -8,29 +8,27 @@ using UnityEngine;
 public class DataController : MonoBehaviour
 {
 	readonly string USERS_URL = "https://jsonplaceholder.typicode.com/users";
-	//readonly string TODOS_URL = "https://jsonplaceholder.typicode.com/todos";
+	readonly string TODOS_URL = "https://jsonplaceholder.typicode.com/todos";
 
 	async Task<User[]> FetchUsers()
 	{
 		Debug.Log(" FetchUsers");
 		var www = await new WWW(USERS_URL);
 
-		Debug.Log("after await line");
 		if (!string.IsNullOrEmpty(www.error))
 		{
 			throw new Exception();
 		}
 
-		Debug.Log("after www error check");
-		var jsonString = fixJson(www.text);
+		var jsonString = www.text;
 
 		Debug.Log(string.Format("json: {0} ", jsonString));
 
-		User[] users = JsonHelper.FromJson<User>(jsonString);
+		User[] users = JsonHelper.FromServerJson<User>(jsonString);
 
 		return users;
 	}
-	/*
+	
 	async Task<Todo[]> FetchTodos()
 	{
 		var www = await new WWW(TODOS_URL);
@@ -38,18 +36,16 @@ public class DataController : MonoBehaviour
 		{
 			throw new Exception();
 		}
-		var json = www.text;
-		var todosRaws = JsonHelper.getJsonArray<TodoRaw>(json);
-		return todosRaws.Select(todoRaw => new Todo(todoRaw)).ToArray();
-	}
-	*/
 
+		var jsonString = www.text;
 
-	string fixJson(string value)
-	{
-		value = "{\"Items\":" + value + "}";
-		return value;
+		//Debug.Log(string.Format("json: {0} ", jsonString));
+
+		Todo[] todos = JsonHelper.FromServerJson<Todo>(jsonString);
+
+		return todos;
 	}
+
 
 	async void Start()
 	{
@@ -58,25 +54,27 @@ public class DataController : MonoBehaviour
 			Debug.Log("A");
 
 			var users = await FetchUsers();
-			//var todos = await FetchTodos();
+			var todos = await FetchTodos();
 
 			Debug.Log("B");
 
 
 			foreach (User user in users)
 			{
-				Debug.Log(user.name);
+
+				//Debug.Log(string.Format("Name: {0}", user.name));
+				Debug.Log(string.Format("Name: {0} Company {1} Company bs {2}", user.name, user.company.name, user.company.bs));
 			}
 
 			Debug.Log("C");
 
 
-			/*
+			
 			foreach (Todo todo in todos)
 			{
-				Debug.Log(todo.Title);
+				Debug.Log(todo.title);
 			}
-			*/
+			
 		}
 		catch
 		{
