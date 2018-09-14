@@ -46,7 +46,33 @@ public class DataController : MonoBehaviour
 		return todos;
 	}
 
+	async void Start()
+	{
 
+
+		try
+		{
+			var usersTask = FetchUsers();
+			var todosTask = FetchTodos();
+			await Task.WhenAll(usersTask, todosTask);
+			var users = await usersTask;
+			var todos = await todosTask;
+
+			foreach (User user in users)
+			{
+				Debug.Log(user.name);
+			}
+			foreach (Todo todo in todos)
+			{
+				Debug.Log(todo.title);
+			}
+		}
+		catch
+		{
+			Debug.Log("An error occurred");
+		}
+	}
+	/*
 	async void Start()
 	{
 		try
@@ -81,4 +107,5 @@ public class DataController : MonoBehaviour
 			Debug.Log("<color=#ff00ffff> An error occurred</color>" );
 		}
 	}
+	*/
 }
